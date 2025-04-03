@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
+    <h2>Registered Users</h2>
+    <ul id="userList">
+        <!-- Users will be listed here -->
+    </ul>
+
+    <script>
+        // Get users from localStorage
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Get the user list container
+        let userList = document.getElementById('userList');
+
+        // Display users
+        if (users.length === 0) {
+            userList.innerHTML = '<li>No users registered yet.</li>';
+        } else {
+            users.forEach(user => {
+                let listItem = document.createElement('li');
+                listItem.textContent = `Name: ${user.username}, Email: ${user.email}`;
+                userList.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
